@@ -37,8 +37,8 @@ void Relief::extractFeatures(int nf)
 	std::default_random_engine e;
 	std::uniform_int_distribution<> u(0, dataSet.cols - 1);
 
-	map<double, int, greater<int>> nearHitData;
-	map<double, int, greater<int>> nearMissData;
+	map<double, int> nearHitData;
+	map<double, int> nearMissData;
 	for (int i = 0; i < numberOfSample; i++)
 	{
 		int rand = u(e);
