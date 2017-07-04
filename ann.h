@@ -36,7 +36,6 @@ public:
 	};
 
 public:
-	ANN() = default;
 	ANN(const ANN & rhs) = delete;
 	ANN(Mat & l, Mat & d);
 	~ANN() { ; }
