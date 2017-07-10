@@ -39,6 +39,10 @@ void GMM::train()
 		updateMeans();
 		updateCovMatrix();
 
+		//E-step of GMM
+		updateGammaZnk();
+		updateSumZnk();
+		
 		//Calculate loss function
 		curLoss = calculateLossFunc();
 		errors.push_back(curLoss);
@@ -47,10 +51,6 @@ void GMM::train()
 			break;
 		else
 			preLoss = curLoss;
-
-		//E-step of GMM
-		updateGammaZnk();
-		updateSumZnk();
 	}
 }
 
