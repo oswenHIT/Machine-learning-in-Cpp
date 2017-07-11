@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <random>
 
+#include "mlbase.h"
 
 using cv::Mat;
 using std::vector;
@@ -17,7 +18,8 @@ using std::cout;
 using std::endl;
 
 
-class Kmeans {
+class Kmeans : public MLBase
+{
 public:
 	Kmeans(Mat & datas, int k, double t = 0.005, int i = 100)
 	try : dataSet(datas), K(k), threshold(t), iters(i)
@@ -34,15 +36,17 @@ public:
 		cout << e.what() << endl;
 	}
 
-	void train();
+	void train() override;
 	int predict(Mat & data);
 	void setKinds(int k)
 	{
 		if (k >= 1)
 			K = k;
 	}
-	vector<double> & showErrors();
+	vector<double> & showErrors() override;
+	const vector<double> & showErrors() const override;
 	Mat & showMeans() { return curMeans; }
+	vector<vector<int>> & showKinds() { return kinds; }
 
 private:
 	Mat dataSet;
