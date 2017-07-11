@@ -5,6 +5,8 @@
 #include <iostream>
 #include <algorithm>
 
+#include "mlbase.h"
+
 using std::endl;
 using std::cout;
 using std::vector;
@@ -41,7 +43,7 @@ struct GaussDist
 };
 
 
-class GaussProcess
+class GaussProcess : public MLBase
 {
 public:
 	GaussProcess(Mat & t, Mat & datas, double r = 0.1, int i = 100) 
@@ -68,9 +70,10 @@ public:
 
 	void setParameters(const GaussPars & par);
 	GaussPars & getParameters();
-	void train();
+	void train() override;
 	GaussDist predict(Mat & dataPoints);
-	vector<double> & showErrors() { return errors; }
+	vector<double> & showErrors() override { return errors; }
+	const vector<double> & showErrors() const override { return errors; }
 
 private:
 	//Transit matrixs
