@@ -4,10 +4,12 @@
 #include <vector>
 #include <opencv2\opencv.hpp>
 
+#include "mlbase.h"
+
 using cv::Mat;
 using std::vector;
 
-class Fisher 
+class Fisher : public MLBase 
 {
 public:
 	Fisher(Mat & c1, Mat & c2) try :
@@ -28,7 +30,7 @@ public:
 		std::cout << e.what() << std::endl;
 	}
 
-	void train();
+	void train() override;
 	int predict(Mat & data);
 	vector<double> showParameters();
 
