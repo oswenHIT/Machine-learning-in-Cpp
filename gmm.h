@@ -7,6 +7,7 @@
 #include <opencv2\core.hpp>
 
 #include "kmeans.h"
+#include "mlbase.h"
 
 using std::cout;
 using std::endl;
@@ -25,18 +26,18 @@ class more
 };
 
 
-class GMM 
+class GMM : public MLBase
 {
 public:
 	GMM(Mat & data, int kinds, int i = 100, double e = 0.01);
 	GMM(const GMM &) = delete;
 
-	void train();
+	void train() override;
 	int predict(Mat & dataPoint);
-	const vector<double> & showLossFuncVals() const {
+	const vector<double> & showLossFuncVals() const override {
 		return errors;
 	}
-	vector<double> & showLossFuncVals() { return errors; }
+	vector<double> & showLossFuncVals() override { return errors; }
 	const Mat & showMeans() const { return Uk; }
 	Mat & showMeans() { return Uk; }
 
