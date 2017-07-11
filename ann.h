@@ -6,6 +6,7 @@
 #include <random>
 #include <algorithm>
 
+#include "mlbase.h"
 
 using cv::Mat;
 using std::vector;
@@ -27,7 +28,7 @@ struct Parameters
 	int numOfHidden;
 };
 
-class ANN 
+class ANN : public MLBase
 {
 public:
 	enum ActFunc
@@ -66,11 +67,15 @@ public:
 		numOfHidden = pars.numOfHidden;
 	}
 
-	void train();
+	void train() override;
 	vector<double> predict(Mat & data);
-	vector<double> & showErrors() 
+	vector<double> & showErrors() override 
 	{ 
 		return errors; 
+	}
+	const vector<double> & showErrors() const override
+	{
+		return errors;
 	}
 
 private:
