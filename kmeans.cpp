@@ -67,6 +67,11 @@ vector<double>& Kmeans::showErrors()
 	return errors;
 }
 
+const vector<double>& Kmeans::showErrors() const
+{
+	return errors;
+}
+
 double Kmeans::calculateDist(Mat & rhs, Mat & lhs)
 {
 	if (rhs.rows != lhs.rows || rhs.cols != lhs.cols)
